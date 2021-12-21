@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { App } from './App';
+import { CounterApp } from './components/01-useState/CounterApp';
 
 ReactDom.render(
-    <App />,
+    <CounterApp />,
     document.getElementById('root')
 );
