@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+this project follows Udemy course of React from Zero to expert by Fernando Herrera [url](https://www.udemy.com/course/react-cero-experto)
+
 ## Available Scripts
 
 In the project directory, you can run:
