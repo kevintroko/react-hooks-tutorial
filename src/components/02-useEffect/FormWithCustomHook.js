@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from '../../hooks/useForm';
 import './effects.css';
 import { Message } from './Message';
@@ -12,8 +12,17 @@ export const FormWithCustomHook = () => {
     
     const { name, mail, password } = formValue;
     
+    useEffect(() => {
+        console.log('email changed')
+    }, [mail]);
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('submit');
+    };
+    
     return (
-        <>
+        <form onSubmit={handleSubmit}>
          <h1>Use Effect</h1>   
          <hr />
          
@@ -55,6 +64,9 @@ export const FormWithCustomHook = () => {
          {
              (name === '123') && <Message />
          }
-        </>
+         
+         <br />
+         <button type='submit' className='btn btn-primary'>Submit</button>
+        </form>
     )
 }
