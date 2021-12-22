@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { SimpleForm } from './components/02-useEffect/SimpleForm';
+import { FormWithCustomHook } from './components/02-useEffect/FormWithCustomHook';
 
 ReactDom.render(
-    <SimpleForm />,
+    <FormWithCustomHook />,
     document.getElementById('root')
 );
