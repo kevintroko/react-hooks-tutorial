@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { FormWithCustomHook } from './components/02-useEffect/FormWithCustomHook';
+import { MultipleCustomHooks } from './components/03-examples/MultipleCustomHooks';
 
 ReactDom.render(
-    <FormWithCustomHook />,
+    <MultipleCustomHooks />,
     document.getElementById('root')
 );
