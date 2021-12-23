@@ -12,9 +12,6 @@ export const MultipleCustomHooks = () => {
     
     return (
         <div>
-            <h1>Breaking bad quotes</h1>
-            <hr />
-            
             {
                 loading ?
                 (
