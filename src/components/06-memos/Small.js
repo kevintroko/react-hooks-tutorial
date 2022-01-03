@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-export const Small = ({ value }) => {
+export const Small = memo(({ value }) => {
     return (
         <small>
             {value}
         </small>
     )
-}
+})
