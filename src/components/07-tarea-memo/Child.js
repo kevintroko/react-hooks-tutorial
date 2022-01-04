@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Child = ({ number, increment }) => {
+export const Child = React.memo(({ number, increment }) => {
 
     console.log('Im back');
 
@@ -12,4 +12,4 @@ export const Child = ({ number, increment }) => {
             { number }
         </button>
     )
-}
+})
