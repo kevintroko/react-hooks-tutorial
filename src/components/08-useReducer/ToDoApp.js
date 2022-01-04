@@ -19,13 +19,25 @@ export const ToDoApp = () => {
             <h1>To Dos <small>({toDos.length})</small></h1>
             <hr></hr>
             
-            <ul className='list-group list-group-flush'>
-                {
-                    toDos.map(toDo => (
-                        <li key={toDo.id} className='list-group-item'>{toDo.desc}</li>
-                    ))
-                }
-            </ul>
+            <div className='row'>
+                <div className='col-7'>
+                    <ul className='list-group list-group-flush'>
+                    {
+                        toDos.map((toDo, i) => (
+                            <li key={toDo.id} 
+                                className='list-group-item'>
+                                <p className='text-center'>{i + 1}. {toDo.desc}</p>
+                                <button className='btn btn-danger'>
+                                    Delete
+                                </button>
+                            </li>
+                        ))
+                    }
+                    </ul>
+                </div>
+                
+                <div className='col-5'> Add</div>
+            </div>
         </div>
     )
 }
