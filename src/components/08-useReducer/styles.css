@@ -17,3 +17,8 @@ p {
 .complete {
     text-decoration: line-through;
 }
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
