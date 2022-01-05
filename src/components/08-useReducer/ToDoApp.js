@@ -5,7 +5,7 @@ import './styles.css';
 import { useForm } from '../../hooks/useForm';
 
 const init = () => {
-    return localStorage.getItem('toDos') || [];
+    return JSON.parse(localStorage.getItem('toDos')) || [];
 }
 
 export const ToDoApp = () => {
@@ -43,6 +43,15 @@ export const ToDoApp = () => {
         dispatch(action);
         reset();
     }
+    
+    const handleDelete = (id) => {
+        const action = {
+            type: 'delete',
+            payload: id
+        }
+        
+        dispatch(action);
+    }
 
     
     return (
@@ -58,7 +67,8 @@ export const ToDoApp = () => {
                             <li key={toDo.id} 
                                 className='list-group-item'>
                                 <p className='text-center'>{i + 1}. {toDo.desc}</p>
-                                <button className='btn btn-danger'>
+                                <button className='btn btn-danger'
+                                        onClick={ () => handleDelete(toDo.id) }>
                                     Delete
                                 </button>
                             </li>
