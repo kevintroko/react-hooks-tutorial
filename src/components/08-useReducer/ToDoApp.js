@@ -3,9 +3,10 @@ import { toDoReducer } from './toDoReducer';
 
 import './styles.css';
 import { useForm } from '../../hooks/useForm';
+import { ToDoList } from './ToDoList';
 
 const init = () => {
-    return localStorage.getItem('toDos') || [];
+    return JSON.parse(localStorage.getItem('toDos')) || [];
 }
 
 export const ToDoApp = () => {
@@ -13,10 +14,6 @@ export const ToDoApp = () => {
     const [ { description }, handleInputChange, reset ] = useForm({
         description: ''
     });
-    
-    console.log(toDos);
-    
-    console.log(description);
     
     useEffect(() => {
         localStorage.setItem('toDos', JSON.stringify(toDos));
@@ -43,28 +40,33 @@ export const ToDoApp = () => {
         dispatch(action);
         reset();
     }
-
     
+    const handleDelete = (id) => {
+        const action = {
+            type: 'delete',
+            payload: id
+        }
+        
+        dispatch(action);
+    }
+    
+    const handleToggle = (id) => {
+        dispatch({
+            type: 'toggle',
+            payload: id
+        })
+    }
+
     return (
         <div>
-            <h1>To Dos <small>({toDos.length})</small></h1>
+            <h1>To Dos <small>({toDos.filter(toDo => !toDo.done).length})</small></h1>
             <hr></hr>
             
             <div className='row'>
                 <div className='col-7'>
-                    <ul className='list-group list-group-flush'>
-                    {
-                        toDos.map((toDo, i) => (
-                            <li key={toDo.id} 
-                                className='list-group-item'>
-                                <p className='text-center'>{i + 1}. {toDo.desc}</p>
-                                <button className='btn btn-danger'>
-                                    Delete
-                                </button>
-                            </li>
-                        ))
-                    }
-                    </ul>
+                    <ToDoList toDos={toDos}
+                              handleToggle={handleToggle}
+                              handleDelete={handleDelete}/>
                 </div>
                 
                 <div className='col-5'>
