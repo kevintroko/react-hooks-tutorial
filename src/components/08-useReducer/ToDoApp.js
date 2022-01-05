@@ -52,11 +52,18 @@ export const ToDoApp = () => {
         
         dispatch(action);
     }
+    
+    const handleToggle = (id) => {
+        dispatch({
+            type: 'toggle',
+            payload: id
+        })
+    }
 
     
     return (
         <div>
-            <h1>To Dos <small>({toDos.length})</small></h1>
+            <h1>To Dos <small>({toDos.filter(toDo => !toDo.done).length})</small></h1>
             <hr></hr>
             
             <div className='row'>
@@ -66,7 +73,10 @@ export const ToDoApp = () => {
                         toDos.map((toDo, i) => (
                             <li key={toDo.id} 
                                 className='list-group-item'>
-                                <p className='text-center'>{i + 1}. {toDo.desc}</p>
+                                <p onClick={() => handleToggle(toDo.id)}
+                                   className={ `${toDo.done && 'complete'}`}>
+                                    {i + 1}. {toDo.desc}
+                                </p>
                                 <button className='btn btn-danger'
                                         onClick={ () => handleDelete(toDo.id) }>
                                     Delete
