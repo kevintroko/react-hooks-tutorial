@@ -12,8 +12,27 @@ const initialState = [
 ]
 
 export const ToDoApp = () => {
-    const [ toDos ] = useReducer(toDoReducer, initialState);
+    const [ toDos, dispatch ] = useReducer(toDoReducer, initialState);
     console.log(toDos);
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        const newToDo = {
+            id: new Date().getTime(),
+            desc: 'Learn Lambda',
+            done: false
+        }
+        
+        const action = {
+            type: 'add',
+            payload: newToDo
+        }
+        
+        dispatch(action);
+    }
+    
+    
     return (
         <div>
             <h1>To Dos <small>({toDos.length})</small></h1>
@@ -39,13 +58,14 @@ export const ToDoApp = () => {
                 <div className='col-5'>
                     <h4>Add To Do</h4>
                     <hr />
-                    <form>
+                    <form onSubmit={ handleSubmit }>
                         <input type="text"
                                name="description"
                                placeholder='Learn...' 
                                className='form-control'
                                autoComplete="off"/>
-                        <button className='btn btn-outline-primary mt-1 btn-block'>
+                        <button className='btn btn-outline-primary mt-1 btn-block'
+                                type='submit'>
                             Add
                         </button>
                     </form>
