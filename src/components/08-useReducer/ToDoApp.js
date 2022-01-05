@@ -1,19 +1,15 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { toDoReducer } from './toDoReducer';
 
 import './styles.css';
 import { useForm } from '../../hooks/useForm';
 
-const initialState = [
-    {
-        id: new Date().getTime(),
-        desc: 'Learn React',
-        done: false,
-    }
-]
+const init = () => {
+    return localStorage.getItem('toDos') || [];
+}
 
 export const ToDoApp = () => {
-    const [ toDos, dispatch ] = useReducer(toDoReducer, initialState);
+    const [ toDos, dispatch ] = useReducer(toDoReducer, [], init);
     const [ { description }, handleInputChange, reset ] = useForm({
         description: ''
     });
@@ -21,6 +17,10 @@ export const ToDoApp = () => {
     console.log(toDos);
     
     console.log(description);
+    
+    useEffect(() => {
+        localStorage.setItem('toDos', JSON.stringify(toDos));
+    }, [toDos]);
     
     const handleSubmit = (e) => {
         e.preventDefault();
