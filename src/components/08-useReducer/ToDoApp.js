@@ -2,6 +2,7 @@ import React, { useReducer } from 'react'
 import { toDoReducer } from './toDoReducer';
 
 import './styles.css';
+import { useForm } from '../../hooks/useForm';
 
 const initialState = [
     {
@@ -13,14 +14,24 @@ const initialState = [
 
 export const ToDoApp = () => {
     const [ toDos, dispatch ] = useReducer(toDoReducer, initialState);
+    const [ { description }, handleInputChange, reset ] = useForm({
+        description: ''
+    });
+    
     console.log(toDos);
+    
+    console.log(description);
     
     const handleSubmit = (e) => {
         e.preventDefault();
         
+        if (description.trim().length <= 1) {
+            return;
+        }
+        
         const newToDo = {
             id: new Date().getTime(),
-            desc: 'Learn Lambda',
+            desc: description,
             done: false
         }
         
@@ -30,8 +41,9 @@ export const ToDoApp = () => {
         }
         
         dispatch(action);
+        reset();
     }
-    
+
     
     return (
         <div>
@@ -63,7 +75,9 @@ export const ToDoApp = () => {
                                name="description"
                                placeholder='Learn...' 
                                className='form-control'
-                               autoComplete="off"/>
+                               autoComplete="off"
+                               value={description}
+                               onChange={ handleInputChange }/>
                         <button className='btn btn-outline-primary mt-1 btn-block'
                                 type='submit'>
                             Add
