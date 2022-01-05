@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { Parent } from './components/07-tarea-memo/Parent';
+import { ToDoApp } from './components/08-useReducer/ToDoApp';
 
 ReactDom.render(
-    <Parent />,
+    <ToDoApp />,
     document.getElementById('root')
 );
