@@ -15,10 +15,6 @@ export const ToDoApp = () => {
         description: ''
     });
     
-    console.log(toDos);
-    
-    console.log(description);
-    
     useEffect(() => {
         localStorage.setItem('toDos', JSON.stringify(toDos));
     }, [toDos]);
