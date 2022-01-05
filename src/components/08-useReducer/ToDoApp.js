@@ -3,6 +3,7 @@ import { toDoReducer } from './toDoReducer';
 
 import './styles.css';
 import { useForm } from '../../hooks/useForm';
+import { ToDoList } from './ToDoList';
 
 const init = () => {
     return JSON.parse(localStorage.getItem('toDos')) || [];
@@ -60,7 +61,6 @@ export const ToDoApp = () => {
         })
     }
 
-    
     return (
         <div>
             <h1>To Dos <small>({toDos.filter(toDo => !toDo.done).length})</small></h1>
@@ -68,23 +68,9 @@ export const ToDoApp = () => {
             
             <div className='row'>
                 <div className='col-7'>
-                    <ul className='list-group list-group-flush'>
-                    {
-                        toDos.map((toDo, i) => (
-                            <li key={toDo.id} 
-                                className='list-group-item'>
-                                <p onClick={() => handleToggle(toDo.id)}
-                                   className={ `${toDo.done && 'complete'}`}>
-                                    {i + 1}. {toDo.desc}
-                                </p>
-                                <button className='btn btn-danger'
-                                        onClick={ () => handleDelete(toDo.id) }>
-                                    Delete
-                                </button>
-                            </li>
-                        ))
-                    }
-                    </ul>
+                    <ToDoList toDos={toDos}
+                              handleToggle={handleToggle}
+                              handleDelete={handleDelete}/>
                 </div>
                 
                 <div className='col-5'>
