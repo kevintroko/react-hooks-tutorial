@@ -16,9 +16,10 @@ export const AppRouter = () => {
             <NavBar />
             
             <Routes>
-                <Route path="/about" element={<AboutScreen />} />
-                <Route path="/login" element={<LoginScreen />} />
+                <Route path="about" element={<AboutScreen />} />
+                <Route path="login" element={<LoginScreen />} />
                 <Route path="/" element={<HomeScreen />} />
+                <Route path="*" element={<HomeScreen />} />
             </Routes>
         </div>
     </Router>
