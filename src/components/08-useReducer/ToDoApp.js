@@ -3,6 +3,7 @@ import { toDoReducer } from './toDoReducer';
 
 import './styles.css';
 import { ToDoList } from './ToDoList';
+import { ToDoAdd } from './ToDoAdd';
 
 const init = () => {
     return JSON.parse(localStorage.getItem('toDos')) || [];
@@ -51,7 +52,7 @@ export const ToDoApp = () => {
                 </div>
                 
                 <div className='col-5'>
-                    <ToDoApp handleAddToDo={handleAddToDo}/>
+                    <ToDoAdd handleAddToDo={handleAddToDo}/>
                 </div>
             </div>
         </div>
