@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import { ToDoApp } from './components/08-useReducer/ToDoApp';
+import { MainApp } from './components/09-useContext/MainApp';
 
 ReactDom.render(
-    <ToDoApp />,
+    <MainApp />,
     document.getElementById('root')
 );
